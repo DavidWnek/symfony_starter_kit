@@ -18,3 +18,4 @@ parameters:
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
     project_name: Project Name
+    version: v0.0.1

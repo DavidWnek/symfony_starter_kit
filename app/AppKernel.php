@@ -27,6 +27,7 @@ class AppKernel extends Kernel
 
             //Project Bundles
             new AppBundle\AppBundle(),
+            new davidwnek\EasySonataAdminBundle\EasySonataAdminBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

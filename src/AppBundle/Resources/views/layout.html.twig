@@ -47,6 +47,9 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('ROLE_USER') %}
+                    {% if is_granted('ROLE_SONATA_ADMIN') %}
+                        <li><a href="{{ path('sonata_admin_dashboard') }}">Admin</a></li>
+                    {% endif %}
                     <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                 {% else %}
                     <li {% if app.request.get('_route') == 'fos_user_security_login' %}class="active"{% endif %}><a href="{{ path('fos_user_security_login') }}">Login</a></li>

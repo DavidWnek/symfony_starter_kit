@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link rel="icon" href="{{ asset('favicon.ico') }}">
 
-    <title>Fixed Top Navbar Example for Bootstrap</title>
+    <title>{{ project_name }}{{ block('title') }}</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('vendor/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
@@ -26,7 +26,7 @@
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-
+{% set route_name = app.request.get('_route') %}
 <body>
 
 <!-- Fixed navbar -->
@@ -39,17 +39,18 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Project name</a>
+            <a class="navbar-brand" href="{{ path('homepage') }}">{{ project_name }}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path('homepage') }}">Home</a></li>
+                <li {% if route_name == 'homepage' %}class="active" {% endif %}><a href="{{ path('homepage') }}">Home</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if is_granted('ROLE_USER') %}
                     {% if is_granted('ROLE_SONATA_ADMIN') %}
                         <li><a href="{{ path('sonata_admin_dashboard') }}">Admin</a></li>
                     {% endif %}
+                    <li {% if route_name == 'fos_user_profile_show' %}class="active" {% endif %}><a href="{{ path('fos_user_profile_show') }}">Profile</a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                 {% else %}
                     <li {% if app.request.get('_route') == 'fos_user_security_login' %}class="active"{% endif %}><a href="{{ path('fos_user_security_login') }}">Login</a></li>
